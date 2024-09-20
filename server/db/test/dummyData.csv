@@ -1,4 +1,4 @@
-ID,Address,Last Appointment,Employee,Next Appointment
+id,address, last_appointment,employee,next_appointment
 0,"2841 DEBARR RD, ANCHORAGE, AK",null,null,null
 1,"3340 PROVIDENCE DR, ANCHORAGE, AK","September 15, 2024",Olivia Carter,"September 23, 2024"
 2,"2741 DEBARR RD, ANCHORAGE, AK","September 5, 2024",Charlie Brown,"October 5, 2024"
