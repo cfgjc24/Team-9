@@ -8,7 +8,7 @@ function App() {
 			{NavBar()}
 			<Dashboard></Dashboard>
 		</>
-  	);
+	);
 }
 
 export default App;

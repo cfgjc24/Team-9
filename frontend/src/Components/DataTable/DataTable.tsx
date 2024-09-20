@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState} from "react";
 import {
 	Paper,
 	Table,
@@ -43,8 +43,8 @@ const rows = [
 ];
 
 export default function StickyHeadTable() {
-	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);
+	const [page, setPage] = useState<number>(0);
+	const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
