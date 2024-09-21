@@ -6,15 +6,15 @@ interface Props {
 	children: React.ReactNode;
 }
 
-const ProtectedRoute = ({ children }: Props): JSX.Element => {
+const OppProtRoute = ({ children }: Props): JSX.Element => {
 	const location = useLocation();
 	const { isLoggedIn } = useAuth();
 
-	return isLoggedIn() ? (
+	return !isLoggedIn() ? (
 		<>{children}</>
 	) : (
-		<Navigate to="/login" state={{ from: location }} replace />
+		<Navigate to="/dashboard" state={{ from: location }} replace />
 	);
 };
 
-export default ProtectedRoute;
+export default OppProtRoute;
