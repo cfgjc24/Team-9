@@ -12,6 +12,8 @@ export interface Dashboard {
 	last_appointment: string;
 	employee: string;
 	next_appointment: string;
+	latitude: number | null;
+	longitude: number | null;
 }
 
 

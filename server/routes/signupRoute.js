@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import * as Employee from '../models/SignUp.js';
+import * as model from '../models/SignUp.js';
 
 const router = Router();
 
-router.get('/getAllEmployeesPos', async (req, res) => {
+router.get('/createClient', async (req, res) => {
     try {
-        const pos = await Employee.getAllEmployeePos();
+        const pos = await model.createClient();
         res.json(pos);
     }
     catch (err){
