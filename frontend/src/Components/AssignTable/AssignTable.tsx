@@ -18,6 +18,7 @@ const columns: readonly AssignCol[] = [
 	{ id: "age", label: "Age", minWidth: 100 },
 	{ id: "gender", label: "Gender", minWidth: 100 },
 	{ id: "language", label: "Language", minWidth: 100 },
+	{id: "employee_count", label: "Employee Count", minWidth: 100},
 ];
 
 export const AssignTable = () => {
@@ -29,7 +30,13 @@ export const AssignTable = () => {
 	useEffect(() => {
 		const getCli = async (): Promise<void> => {
 			const res = await getAllAssign();
-			setRows(res);
+			setRows(
+				res.map((item: any) => ({
+					...item,
+					employee_count: item.employee_count ?? 0,
+				}))
+			);
+
 			setIsLoading(false);
 		}
 		setIsLoading(true);

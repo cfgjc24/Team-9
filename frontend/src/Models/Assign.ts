@@ -1,5 +1,5 @@
 export interface AssignCol {
-	id: "id" | "address" | "age" | "gender" | "language";
+	id: "id" | "address" | "age" | "gender" | "language" | "employee_count";
 	label: string;
 	minWidth?: number;
 	align?: "right";
@@ -20,6 +20,7 @@ export interface Assign {
 	age: number;
 	gender: string;
 	language: string;
+	employee_count: number;
 }
 
 export interface AssignDoc {
