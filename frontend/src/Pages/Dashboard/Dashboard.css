@@ -22,6 +22,14 @@
     height: 50px;
     object-fit: contain; 
   }
+
+  .title {
+    font-weight:350;
+    font-size:30px;
+    text-align:center;
+    font-style: italic;
+    text-decoration-line: underline;
+  }
   
   @media (max-width: 600px) {
     .banner-image {
