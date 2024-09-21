@@ -107,10 +107,11 @@ const NavBar = (props: Props) => {
 								display: { xs: "none", md: "flex" },
 							}}
 						>
-							{pages.map((page) => (
+							{pages.map((page, index) => (
 								<Link
 									to={`/${page.toLowerCase()}`}
 									style={{ textDecoration: "none" }}
+									key={index}
 								>
 									<Button
 										key={page}

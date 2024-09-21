@@ -1,19 +1,80 @@
-import { APIProvider, Map, } from "@vis.gl/react-google-maps";
+import { useEffect, useState } from "react";
+import {
+	APIProvider,
+	Map,
+	AdvancedMarker,
+	Pin,
+	InfoWindow,
+} from "@vis.gl/react-google-maps";
+import { getAllMapClients } from "../../Services/ProvidersService";
 
-const Providers = () => {
-	const API_KEY = process.env.REACT_APP_MAPS_API_KEY || "";
+interface Row {
+	latitude: string;
+	longitude: string;
+}
 
-	return (
-		<APIProvider apiKey={API_KEY}>
-			<Map
-				style={{ width: "100vw", height: "100vh" }}
-				defaultCenter={{ lat: 40.7282, lng: -73.7949 }}
-				defaultZoom={12}
-				gestureHandling={"greedy"}
-				disableDefaultUI={true}
-			/>
+export default function Intro() {
+	const position = { lat: 40.7282, lng: -73.7949 };
+	const [open, setOpen] = useState(false);
+	const [rows, setRows] = useState<Row[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [lat, setLat] = useState<number>(0);
+	const [lng, setLng] = useState<number>(0);
+	const apiKey = process.env.REACT_APP_MAPS_API_KEY!;
+	const mapId = process.env.REACT_APP_MapID;
+	useEffect(() => {
+		const getCli = async (): Promise<void> => {
+			const res = await getAllMapClients();
+			setRows(res);
+			setIsLoading(false);
+		};
+		setIsLoading(true);
+		getCli();
+	}, []);
+	const handleOpen = (lat: string, long: string) => {
+		setLat(Number(lat));
+		setLng(Number(long));
+
+		setOpen(true);
+	};
+	return isLoading ? (
+		<div>Loading...</div>
+	) : (
+		<APIProvider apiKey={apiKey}>
+			<div style={{ height: "100vh", width: "100%" }}>
+				<Map defaultZoom={12} defaultCenter={position} mapId={mapId}>
+					{rows.map(
+						(row: any, index: number) =>
+							row.latitude !== "null" &&
+							row.longitude !== "null" && (
+								<AdvancedMarker
+									position={{
+										lat: Number(row.latitude),
+										lng: Number(row.longitude),
+									}}
+									onClick={() =>
+										handleOpen(row.latitude, row.longitude)
+									}
+									key={index}
+								>
+									<Pin
+										background={"grey"}
+										borderColor={"green"}
+										glyphColor={"purple"}
+									/>
+								</AdvancedMarker>
+							)
+					)}
+					{open && (
+						<InfoWindow
+							position={{lat: lat + .005, lng: lng}}
+							onCloseClick={() => setOpen(false)}
+						>
+							<p>I'm at {lat}, {lng}</p>
+						</InfoWindow>
+					)}
+				</Map>
+			</div>
 		</APIProvider>
 	);
-};
-
-export default Providers;
+}
