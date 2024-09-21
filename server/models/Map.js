@@ -57,5 +57,7 @@ export const newUserPos = async(latitude, longitude, id) => {
 }
 
 
+ 
+
 
 
