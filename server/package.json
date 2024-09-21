@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon ./db.js"
   },
   "type": "module",
   "dependencies": {
@@ -10,6 +10,7 @@
     "mongodb": "^6.9.0",
     "mongoimport": "^1.0.6",
     "mongoose": "^8.6.3",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "postgres": "^3.4.4"
   }
 }
