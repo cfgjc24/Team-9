@@ -6,14 +6,15 @@ import Button from './Components/EmergencyButton/Button';
 
 function App() {
 	const handleEmergencyClick = () => {
-	  alert('Emergency button clicked!');
+	  alert('Emergency services have been contacted.');
+	  // maybe send out some type of text message and/or call emergency services once clicked
   	};
 
 	return (
 		<UserProvider>
 			<NavBar />
-			<Button onClick={handleEmergencyClick}>EMERGENCY!</Button>
 			<Outlet />
+			<Button onClick={handleEmergencyClick}>EMERGENCY!</Button>
 		</UserProvider>
 	);
 	}
