@@ -14,6 +14,7 @@ export const getAllEmployeePos = async() =>{
 export const getAllClientPos = async() =>{
     try{
         const result = await sql`SELECT latitude, longitude FROM client`;
+        return result;
     } catch(e) {
         console.error('Error receiving client positions: ', e );
     }
@@ -40,7 +41,7 @@ export const getEmployeePos = async(employeeId) =>{
 }
 
 //UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend
-export const newUserPos = async(latitude, longitude, id) => {
+export const newUserPos = async(id, latitude, longitude) => {
     try{
         const result = await sql`UPDATE users SET latitutde = ${latitude}, longitude = ${longitude} WHERE id = ${id}`;
   
