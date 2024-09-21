@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAuth } from "../../Context/useAuth";
 
-const pages = ["Dashboard", "Providers", "Assign"];
+const pages = ["Dashboard", "Providers", "Assign", "Documents"];
 type Props = {};
 
 const NavBar = (props: Props) => {
