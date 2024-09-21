@@ -3,7 +3,9 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Providers from "../Pages/Providers/Providers";
 import Profile from "../Pages/Profile/Profile";
-import Assign from "../Pages/Assign/Assign";
+import Login from "../Pages/LoginPage/Login";
+import ProtectedRoute from "./ProtectedRoutes";
+import OppProtRoute from "./OppProtRoute";
 
 export const router = createBrowserRouter([
 	{
@@ -16,20 +18,36 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "dashboard",
-				element: <Dashboard />,
+				element: (
+					<ProtectedRoute>
+						<Dashboard />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: "providers",
-				element: <Providers />,
+				element: (
+					<ProtectedRoute>
+						<Providers />,
+					</ProtectedRoute>
+				),
 			},
-            {
-                path: "profile",
-                element: <Profile />,
-            },
 			{
-                path: "assign",
-                element: <Assign />,
-            }
+				path: "profile",
+				element: (
+					<ProtectedRoute>
+						<Profile />,
+					</ProtectedRoute>
+				),
+			},
+			{
+				path: "login",
+				element: (
+					<OppProtRoute>
+						<Login />,
+					</OppProtRoute>
+				),
+			},
 		],
 	},
 ]);
