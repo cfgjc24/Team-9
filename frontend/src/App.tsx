@@ -13,8 +13,8 @@ function App() {
 	return (
 		<UserProvider>
 			<NavBar />
-			<Button onClick={handleEmergencyClick}>EMERGENCY!</Button>
 			<Outlet />
+			<Button onClick={handleEmergencyClick}>EMERGENCY!</Button>
 		</UserProvider>
 	);
 	}
