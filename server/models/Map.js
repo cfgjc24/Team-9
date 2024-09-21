@@ -1,58 +1,57 @@
-
-// import express from 'express';
 import sql from '../db/db.js';
 
 //get the lat, long for all employees from db here
-const getEmployees = async() =>{
+export const getAllEmployeePos = async() =>{
     try{
-        const result = await sql.query('SELECT lat, long FROM employee');
+        const result = await sql`SELECT id, latitutde, longitude FROM employee`;
+        return result;
     } catch(e){
         console.error('Error receiving employee positions: ', e );
     }
 }
 
 //get the lat, long for all clients from db here
-const getAllClientPos = async() =>{
+export const getAllClientPos = async() =>{
     try{
-        const result = await sql.query('SELECT lat, long FROM client');
-    } catch(e){
+        const result = await sql`SELECT latitude, longitude FROM client`;
+    } catch(e) {
         console.error('Error receiving client positions: ', e );
     }
 }
 
 //get the lat, long for client_id = clientID from db here
-const getClientPos = async(clientID) =>{
+export const getClientPos = async(clientId) =>{
     try{
-        const result = await sql.query('SELECT lat, long FROM users WHERE client_id = $1', [clientID]);
-    } catch(e){
+        const result = await sql`SELECT latitude, longitude FROM users WHERE id = ${clientId}`;
+        return result;
+    } catch(e) {
         console.error('Error receiving client positions for requested client: ', e );
     }
 }
 
  //get the lat, long for employee_id = employeeId from db here
-const getEmployeePos = async(employeeID) =>{
+export const getEmployeePos = async(employeeId) =>{
     try{
-    const result = await sql.query('SELECT lat, long FROM users WHERE employee_id = $1', [employeeID]);
-    } catch(e){
+        const result = await sql`SELECT lat, long FROM users WHERE employee_id = ${employeeId}`;
+        return result;
+    } catch(e) {
         console.error('Error receiving employee positions for requested employee: ', e );
     }
 }
 
-
-//UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend)
- 
-const newUserPos= async() => {
+//UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend
+export const newUserPos = async(latitude, longitude, id) => {
     try{
-    const result = await sql.query('UPDATE users SET lat = $1, long = $2 WHERE user_id = $3', [lat, long, userId]);
+        const result = await sql`UPDATE users SET latitutde = ${latitude}, longitude = ${longitude} WHERE id = ${id}`;
   
-      if (result.rowCount > 0) {
-        res.json({ message: 'User position updated successfully' });
-      } else {
-        res.status(404).json({ error: 'User not found' });
-      }
+        if (result.rowCount > 0) {
+            res.json({ message: 'User position updated successfully' });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
     } catch (error) {
-      console.error('Error updating user position:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error updating user position:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
   ;
 }

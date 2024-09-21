@@ -1,10 +1,12 @@
 import { Router } from 'express';
+import * as Map from '../models/Map.js';
+
 const router = Router();
 
 router.get('/getAllEmployeesPos', async (req, res) => {
     try {
-        //get the lat, long for all employees from db here
-        res.send({status:'WOrks'});
+        const pos = await Map.getAllEmployeePos();
+        res.json(pos);
     }
     catch (err){
         res.status(500).json({error: `The error is ${err}`});
