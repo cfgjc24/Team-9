@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Paper,
 	Table,
@@ -10,6 +10,7 @@ import {
 	TableRow,
 } from "@mui/material";
 import { Assign, AssignCol } from "../../Models/Assign";
+import { getAllAssign } from "../../Services/AssignService";
 
 const columns: readonly AssignCol[] = [
 	{ id: "id", label: "ID", minWidth: 170 },
@@ -17,25 +18,30 @@ const columns: readonly AssignCol[] = [
 	{ id: "age", label: "Age", minWidth: 100 },
 	{ id: "gender", label: "Gender", minWidth: 100 },
 	{ id: "language", label: "Language", minWidth: 100 },
+	{id: "employee_count", label: "Employee Count", minWidth: 100},
 ];
 
-function createData(
-	id: string,
-	address: string,
-	age: number,
-	gender: string,
-	language: string
-): Assign {
-	return { id, address, age, gender, language };
-}
-
-const rows = [
-	createData("1", "1234 Main St", 15, "M", "English"),
-];
-
-export default function StickyHeadTable() {
+export const AssignTable = () => {
 	const [page, setPage] = useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+	const [rows, setRows] = useState<Assign[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	useEffect(() => {
+		const getCli = async (): Promise<void> => {
+			const res = await getAllAssign();
+			setRows(
+				res.map((item: any) => ({
+					...item,
+					employee_count: item.employee_count ?? 0,
+				}))
+			);
+
+			setIsLoading(false);
+		}
+		setIsLoading(true);
+		getCli();
+	}, []);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -49,6 +55,7 @@ export default function StickyHeadTable() {
 	};
 
 	return (
+		isLoading ? <div>Loading...</div> :
 		<Paper sx={{ width: "100%", overflow: "hidden" }}>
 			<TableContainer sx={{ maxHeight: 440 }}>
 				<Table stickyHeader aria-label="sticky table">

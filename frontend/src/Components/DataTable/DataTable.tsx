@@ -29,7 +29,24 @@ export const StickyHeadTable = () => {
 	useEffect(() => {
 		const getCli = async (): Promise<void> => {
 			const res = await getAllClients();
-			setRows(res);
+			setRows(
+				res.map((item: any) => ({
+					...item,
+					last_appointment:
+						item.last_appointment === "null"
+							? "N/A"
+							: item.last_appointment,
+					next_appointment:
+						item.next_appointment === "null"
+							? "N/A"
+							: item.next_appointment,
+					employee:
+						item.employee === "null"
+							? "N/A"
+							: item.employee,
+				}))
+			);
+	
 			setIsLoading(false);
 		}
 		setIsLoading(true);

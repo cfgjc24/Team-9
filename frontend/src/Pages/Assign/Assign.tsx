@@ -1,12 +1,10 @@
-import React from 'react'
-import StickyHeadTable from "../../Components/AssignTable/AssignTable";
+import React from "react";
+import { AssignTable } from "../../Components/AssignTable/AssignTable";
 
-type Props = {}
+type Props = {};
 
 const Assign = (props: Props) => {
-  return (
-    <div>{StickyHeadTable()}</div>
-  )
-}
+	return <AssignTable />;
+};
 
-export default Assign
+export default Assign;

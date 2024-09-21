@@ -3,7 +3,7 @@ import sql from '../db/db.js';
 //get the lat, long for all employees from db here
 export const getAllEmployeePos = async() =>{
     try{
-        const result = await sql`SELECT id, latitude, longitude FROM employees`;
+        const result = await sql`SELECT name, id, latitude, longitude FROM employees`;
         return result;
     } catch(e){
         console.error('Error receiving employee positions: ', e );
@@ -40,7 +40,7 @@ export const getEmployeePos = async(id) =>{
     }
 }
 
-//UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend
+// UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend
 export const newEmployeePos = async(id, latitude, longitude) => {
     try{
         const result = await sql`UPDATE employees SET latitude = ${latitude}, longitude = ${longitude} WHERE id = ${id} RETURNING *`;
