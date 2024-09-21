@@ -41,11 +41,20 @@ router.get('/getEmployeePos/:id', async (req, res) => {
     }
 })
 
-router.put('/newUserPos', async (req, res) => {
-    try {
-        //UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend)
-        res.send({status: 'works'});
-    }
+router.put('/newEmployeePos', async (req, res) => {
+    const { Id, latitude, longitude } = req.body;
+
+    try {  
+        //const user = await (get user to change their lat, long)
+        
+        if (user.rows.length === 0) {
+        return res.status(404).json({ error: 'Employee not found' });
+        }
+        
+        //const updateLocation = await (UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend)
+    
+        res.json({ message: 'Location updated successfully', user: updateLocation.rows[0] });
+    } 
     catch (err) {
         res.status(500).json({error: `The error is ${err}`});
     }
