@@ -17,8 +17,9 @@ import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["Clients", "Providers", "Assign Providers"];
 const settings = ["Profile", "Logout"];
+type Props = {}
 
-function NavBar() {
+const NavBar = (props: Props) => {
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
 		null
 	);
