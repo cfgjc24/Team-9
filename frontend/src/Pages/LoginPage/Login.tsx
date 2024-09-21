@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
-import logo from "../../Assets/logo_noBG.png";
+import logo from "../../Assets/images/inverted.png";
+import starstretch from "../../Assets/images/stars.png";
 import { useAuth } from "../../Context/useAuth";
 import { useNavigate } from "react-router-dom";
+
 
 type Props = {};
 
@@ -26,9 +28,11 @@ const Login = (props: Props) => {
 	return (
 		<>
 			<div className="sign-in-container">
-				
+				<div className = "stars">
+					{/* <img src={starstretch} alt="Stars" className="starstretch" /> */}
+					<img src={starstretch} alt="Stars" className="starstretch" />
+				</div>
 				<img src={logo} alt="Company Logo" className="logo" />
-
 				<form onSubmit={logIn}>
 					<h1>Log In</h1>
 					<input
@@ -45,7 +49,10 @@ const Login = (props: Props) => {
 					/>
 					<button type="submit">Log In</button>
 				</form>
+				<p style={{color: "white", fontStyle: "italic"}}>Lodestar is a light that guides the way.</p>
 			</div>
+
+
 		</>
 	);
 };
