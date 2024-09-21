@@ -1,11 +1,11 @@
 import React from 'react'
-import StickyHeadTable from "../../Components/DataTable/DataTable";
+import {StickyHeadTable} from "../../Components/DataTable/DataTable";
 
 type Props = {}
 
 const Dashboard = (props: Props) => {
   return (
-    <div>{StickyHeadTable()}</div>
+    <div><StickyHeadTable /></div>
   )
 }
 
