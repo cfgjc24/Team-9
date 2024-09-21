@@ -1,4 +1,4 @@
-import db from ('../db/db');
+import sql from '../db/db.js';
 
 export const createClient = async(authId, address, lastAppointment, nextAppointment, long, lat) => {
     const result = await db.sql(
@@ -9,7 +9,7 @@ export const createClient = async(authId, address, lastAppointment, nextAppointm
 }
 
 export const getClient = async(authId) => {
-    const result = await db.sql(
+    const result = await db(
         'SELECT * FROM users WHERE user_id = $1', 
         [authId]
         );
@@ -17,6 +17,11 @@ export const getClient = async(authId) => {
 }
 
 export const getAllClients = async() => {
-    //const result = await db.sql('SELECT * FROM users');
-    return result.rows[0];
+    const result = await sql`SELECT * FROM clients`;
+    return result;
+}
+
+export const noStaff = async() => {
+    const result = await sql`SELECT * FROM clients WHERE employee = 'null'`;
+    return result;
 }

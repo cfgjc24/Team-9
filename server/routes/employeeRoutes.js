@@ -11,5 +11,4 @@ router.get('/getAllEmployees', async (req, res) => {
     }
 })
 
-
 export default router;
