@@ -1,7 +1,7 @@
 import App from "../App";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Providers from "../Pages/Dashboard/Providers/Providers";
+import Providers from "../Pages/Providers/Providers";
 
 export const router = createBrowserRouter([
 	{
