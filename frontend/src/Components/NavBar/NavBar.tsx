@@ -17,11 +17,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useAuth } from "../../Context/useAuth";
 
 const pages = ["Dashboard", "Providers", "Assign"];
-const settings = ["Profile", "Logout"];
 type Props = {};
 
 const NavBar = (props: Props) => {
-	const { isLoggedIn } = useAuth();
+	const { isLoggedIn, logout } = useAuth();
 
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
 		null
@@ -154,23 +153,27 @@ const NavBar = (props: Props) => {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map((setting) => (
-									<Link
-										to={`/${setting.toLowerCase()}`}
-										style={{ textDecoration: "none" }}
+								<Link
+									to={`/${"profile"}`}
+									style={{ textDecoration: "none" }}
+								>
+									<MenuItem
+										key={"profile"}
+										onClick={handleCloseUserMenu}
 									>
-										<MenuItem
-											key={setting}
-											onClick={handleCloseUserMenu}
+										<Typography
+											sx={{ textAlign: "center" }}
 										>
-											<Typography
-												sx={{ textAlign: "center" }}
-											>
-												{setting}
-											</Typography>
-										</MenuItem>
-									</Link>
-								))}
+											{"profile"}
+										</Typography>
+									</MenuItem>
+								</Link>
+
+								<MenuItem key={"logout"} onClick={logout}>
+									<Typography sx={{ textAlign: "center" }}>
+										{"logout"}
+									</Typography>
+								</MenuItem>
 							</Menu>
 						</Box>
 					</Toolbar>
