@@ -1,6 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useContext, useState } from "react";
-import { auth } from "../firebase";
+import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../Assets/logo_noBG.png";
 import { useAuth } from "../../Context/useAuth";
