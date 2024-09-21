@@ -54,10 +54,6 @@ router.put('/newEmployeePos', async (req, res) => {
 
     try {  
         const user = await Map.newEmployeePos(id, latitude, longitude);
-        if (user.rows.length === 0) {
-        return res.status(404).json({ error: 'Employee not found' });
-        }
-
         res.json(user);
     } 
     catch (err) {

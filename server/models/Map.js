@@ -44,6 +44,7 @@ export const getEmployeePos = async(id) =>{
 export const newEmployeePos = async(id, latitude, longitude) => {
     try{
         const result = await sql`UPDATE employees SET latitude = ${latitude}, longitude = ${longitude} WHERE id = ${id} RETURNING *`;
+        console.log(result);
         return result;
     } catch (error) {
         console.log('Error updating user position:', error);
