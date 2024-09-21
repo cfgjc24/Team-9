@@ -28,7 +28,8 @@ router.get('/getClientPos/:id', async (req, res) => {
     try {
         //get the lat, long for client_id = clientId from db here
         const id = req.params.id;
-        const client = Map.getClientPos(id);
+        console.log(id);
+        const client = await Map.getClientPos(id);
         res.json(client);
     }
     catch (err){
@@ -52,14 +53,12 @@ router.put('/newEmployeePos', async (req, res) => {
     const { id, latitude, longitude } = req.body;
 
     try {  
-        const user = await Map.newUserPos(id, latitude, longitude);
+        const user = await Map.newEmployeePos(id, latitude, longitude);
         if (user.rows.length === 0) {
         return res.status(404).json({ error: 'Employee not found' });
         }
-        
-        //const updateLocation = await UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend)
-    
-        res.json({ message: 'Location updated successfully', user: updateLocation.rows[0] });
+
+        res.json(user);
     } 
     catch (err) {
         res.status(500).json({error: `The error is ${err}`});
