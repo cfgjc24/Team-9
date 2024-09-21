@@ -9,6 +9,7 @@ import {
 import { getAllMapClients } from "../../Services/ProvidersService";
 
 interface Row {
+	name: string;
 	latitude: string;
 	longitude: string;
 }
@@ -20,6 +21,7 @@ export default function Intro() {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [lat, setLat] = useState<number>(0);
 	const [lng, setLng] = useState<number>(0);
+	const [name, setName] = useState<string>("");
 	const apiKey = process.env.REACT_APP_MAPS_API_KEY!;
 	const mapId = process.env.REACT_APP_MapID;
 	useEffect(() => {
@@ -31,7 +33,8 @@ export default function Intro() {
 		setIsLoading(true);
 		getCli();
 	}, []);
-	const handleOpen = (lat: string, long: string) => {
+	const handleOpen = (name: string, lat: string, long: string) => {
+		setName(name);
 		setLat(Number(lat));
 		setLng(Number(long));
 
@@ -53,7 +56,7 @@ export default function Intro() {
 										lng: Number(row.longitude),
 									}}
 									onClick={() =>
-										handleOpen(row.latitude, row.longitude)
+										handleOpen(row.name, row.latitude, row.longitude)
 									}
 									key={index}
 								>
@@ -67,10 +70,10 @@ export default function Intro() {
 					)}
 					{open && (
 						<InfoWindow
-							position={{lat: lat + .005, lng: lng}}
+							position={{lat: lat, lng: lng}}
 							onCloseClick={() => setOpen(false)}
 						>
-							<p>I'm at {lat}, {lng}</p>
+							<p>{name} is at {lat}, {lng}</p>
 						</InfoWindow>
 					)}
 				</Map>

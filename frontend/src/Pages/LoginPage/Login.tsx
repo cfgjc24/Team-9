@@ -26,6 +26,7 @@ const Login = (props: Props) => {
 	return (
 		<>
 			<div className="sign-in-container">
+				
 				<img src={logo} alt="Company Logo" className="logo" />
 
 				<form onSubmit={logIn}>

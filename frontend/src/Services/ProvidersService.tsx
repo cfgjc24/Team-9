@@ -3,9 +3,8 @@ import axios from "axios";
 export const getAllMapClients = async () => {
 	try {
 		const response = await axios.get(
-			`http://localhost:5000/api/map/getAllClientsPos`
+			`http://localhost:5000/api/map/getAllEmployeesPos`
 		);
-        console.log(response)
 		return response.data;
 	} catch (error) {
 		console.error(error);
