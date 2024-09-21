@@ -7,6 +7,7 @@ import Login from "../Pages/LoginPage/Login";
 import ProtectedRoute from "./ProtectedRoutes";
 import OppProtRoute from "./OppProtRoute";
 import Assign from "../Pages/Assign/Assign";
+import Documents from "../Pages/Documents/Documents";
 
 export const router = createBrowserRouter([
 	{
@@ -55,6 +56,14 @@ export const router = createBrowserRouter([
 					<OppProtRoute>
 						<Login />,
 					</OppProtRoute>
+				),
+			},
+			{
+				path: "documents",
+				element: (
+					<ProtectedRoute>
+						<Documents />,
+					</ProtectedRoute>
 				),
 			},
 		],

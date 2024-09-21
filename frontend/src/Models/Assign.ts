@@ -5,6 +5,14 @@ export interface AssignCol {
 	align?: "right";
 	format?: (value: number) => string;
 }
+export interface AssignCol2 {
+	id: "id" | "address" ;
+	label: string;
+	minWidth?: number;
+	align?: "right";
+	format?: (value: number) => string;
+}
+
 
 export interface Assign {
 	id: string;
@@ -14,5 +22,9 @@ export interface Assign {
 	language: string;
 }
 
+export interface AssignDoc {
+	id: string;
+	address: string;
+}
 
 export {};
