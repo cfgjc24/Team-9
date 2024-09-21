@@ -16,7 +16,6 @@ export const getClient = async(authId) => {
     return result.rows[0];
 }
 
-
 export const getAllClients = async() => {
     //const result = await db.sql('SELECT * FROM users');
     return result.rows[0];
