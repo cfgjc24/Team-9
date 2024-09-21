@@ -38,7 +38,6 @@ const getClientPos = async(clientID) =>{
 
 
 //UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend)
-const newUserPos;
 
 
 
