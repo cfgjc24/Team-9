@@ -23,4 +23,14 @@ router.get('/clientsNoStaff', async (req, res) => {
     }
 })
 
+router.get('/clientsWaitlist', async (req, res) => {
+    try {
+        const waitlist = await Client.waitlist();
+        res.json(waitlist);
+    }
+    catch (err) {
+        res.status(500).json({error :`could not get waitlist${err}`});
+    }
+})
+
 export default router;

@@ -25,3 +25,8 @@ export const noStaff = async() => {
     const result = await sql`SELECT * FROM clients WHERE employee = 'null'`;
     return result;
 }
+
+export const waitlist = async() => {
+    const result = await sql`SELECT * FROM waitlist`;
+    return result;
+}
