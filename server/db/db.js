@@ -5,8 +5,6 @@ dotenv.config();
 
 const connectionString = process.env.DATABASE_URL;
 const sql = postgres(connectionString);
-// const users = await sql`
-// select * from "dummyData"
-// `;
-// console.log(users);
 export default sql
+
+// use [import sql from './db.js'] to use queried data  
