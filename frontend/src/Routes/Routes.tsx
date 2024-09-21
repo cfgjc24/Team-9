@@ -2,6 +2,7 @@ import App from "../App";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Providers from "../Pages/Providers/Providers";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
 				path: "providers",
 				element: <Providers />,
 			},
+            {
+                path: "profile",
+                element: <Profile />,
+            }
 		],
 	},
 ]);

@@ -94,14 +94,21 @@ const NavBar = (props: Props) => {
 							onClose={handleCloseUserMenu}
 						>
 							{settings.map((setting) => (
-								<MenuItem
-									key={setting}
-									onClick={handleCloseUserMenu}
+								<Link
+									to={`/${setting.toLowerCase()}`}
+									style={{ textDecoration: "none" }}
 								>
-									<Typography sx={{ textAlign: "center" }}>
-										{setting}
-									</Typography>
-								</MenuItem>
+									<MenuItem
+										key={setting}
+										onClick={handleCloseUserMenu}
+									>
+										<Typography
+											sx={{ textAlign: "center" }}
+										>
+											{setting}
+										</Typography>
+									</MenuItem>
+								</Link>
 							))}
 						</Menu>
 					</Box>
