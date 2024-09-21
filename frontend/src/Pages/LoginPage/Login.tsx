@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import logo from "../../Assets/logo_noBG.png";
 import { useAuth } from "../../Context/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -12,40 +12,46 @@ const Login = (props: Props) => {
 	const { loginUser } = useAuth();
 	const navigate = useNavigate();
 
-	const logIn = (e: React.FormEvent<HTMLFormElement>) => {
+	const [token, setToken] = useState<string | null>(null);
+
+	const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		loginUser(email, password)
-			.then((data: any) => {
-				setEmail("");
-				setPassword("");
-				navigate("/dashboard"); // Move the navigate here
-			})
-			.catch((error: any) => {
-				console.log(error);
-			});
+
+		const response = await loginUser(email, password);
+
+		setEmail("");
+		setPassword("");
+
+		// await setTimeout(() => {
+		// 	navigate("/dashboard");
+		// }, 5000);
 	};
 
-	return (
-		<div className="sign-in-container">
-			<img src={logo} alt="Company Logo" className="logo" />
+	return token ? (
+		<Navigate to="/dashboard" />
+	) : (
+		<>
+			<div className="sign-in-container">
+				<img src={logo} alt="Company Logo" className="logo" />
 
-			<form onSubmit={logIn}>
-				<h1>Log In</h1>
-				<input
-					type="email"
-					placeholder="Enter your email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
-					type="password"
-					placeholder="Enter your password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<button type="submit">Log In</button>
-			</form>
-		</div>
+				<form onSubmit={logIn}>
+					<h1>Log In</h1>
+					<input
+						type="email"
+						placeholder="Enter your email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+					<input
+						type="password"
+						placeholder="Enter your password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+					<button type="submit">Log In</button>
+				</form>
+			</div>
+		</>
 	);
 };
 
