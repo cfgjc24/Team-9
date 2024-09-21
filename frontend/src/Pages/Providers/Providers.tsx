@@ -1,4 +1,4 @@
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import { APIProvider, Map, } from "@vis.gl/react-google-maps";
 
 const Providers = () => {
 	const API_KEY = process.env.REACT_APP_MAPS_API_KEY || "";
