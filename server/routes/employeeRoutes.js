@@ -3,7 +3,7 @@ const router = Router();
 
 router.get('/getAllEmployees', async (req, res) => {
     try {
-        //get the  for all employees from db here
+        //get the * for all employees from db here
         res.send({status:'wOrks'});
     }
     catch (err){
