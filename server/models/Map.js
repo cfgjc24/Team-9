@@ -39,7 +39,8 @@ const getEmployeePos = async(employeeID) =>{
 }
 
 
-//UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend
+//UPDATE THE USER LAT, LONG HERE (every 10 sec from frontend)
+ 
 const newUserPos= async() => {
     try{
     const result = await sql.query('UPDATE users SET lat = $1, long = $2 WHERE user_id = $3', [lat, long, userId]);
@@ -56,6 +57,8 @@ const newUserPos= async() => {
   ;
 }
 
+
+ 
 
 
 
