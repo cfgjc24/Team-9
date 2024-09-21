@@ -14,10 +14,11 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
 
-const pages = ["Clients", "Providers", "Assign Providers"];
+const pages = ["Dashboard", "Providers", "Assign"];
 const settings = ["Profile", "Logout"];
-type Props = {}
+type Props = {};
 
 const NavBar = (props: Props) => {
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -112,7 +113,6 @@ const NavBar = (props: Props) => {
 							textDecoration: "none",
 						}}
 					>
-						LOGO
 					</Typography>
 					<Box
 						sx={{
@@ -121,13 +121,22 @@ const NavBar = (props: Props) => {
 						}}
 					>
 						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: "white", display: "block" }}
+							<Link
+								to={`/${page.toLowerCase()}`}
+								style={{ textDecoration: "none" }}
 							>
-								{page}
-							</Button>
+								<Button
+									key={page}
+									onClick={handleCloseNavMenu}
+									sx={{
+										my: 2,
+										color: "white",
+										display: "block",
+									}}
+								>
+									{page}
+								</Button>
+							</Link>
 						))}
 					</Box>
 					<Box sx={{ flexGrow: 0 }}>
@@ -174,5 +183,5 @@ const NavBar = (props: Props) => {
 			</Container>
 		</AppBar>
 	);
-}
+};
 export default NavBar;
