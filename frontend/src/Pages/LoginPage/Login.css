@@ -63,7 +63,14 @@
     background-color: #357abd;
   }
 
-  /* .stars{
-    width : 500px;
-    display: inline-block;
-  } */
+  .starstretch{
+    margin-bottom: -100px;
+    margin-left: 500px;
+    height: 300px;
+  }
+
+  .starstretch2{
+    padding-top: -200px;
+    margin-right: 500px;
+    height: 300px;
+  }

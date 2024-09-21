@@ -28,10 +28,10 @@ const Login = (props: Props) => {
 	return (
 		<>
 			<div className="sign-in-container">
-				<div className = "stars">
-					{/* <img src={starstretch} alt="Stars" className="starstretch" /> */}
-					<img src={starstretch} alt="Stars" className="starstretch" />
-				</div>
+		
+				
+				<img src={starstretch} alt="Stars" className="starstretch" />
+
 				<img src={logo} alt="Company Logo" className="logo" />
 				<form onSubmit={logIn}>
 					<h1>Log In</h1>
@@ -49,6 +49,7 @@ const Login = (props: Props) => {
 					/>
 					<button type="submit">Log In</button>
 				</form>
+				<img src={starstretch} alt="Stars" className="starstretch2" />
 				<p style={{color: "white", fontStyle: "italic"}}>Lodestar is a light that guides the way.</p>
 			</div>
 
