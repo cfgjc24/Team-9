@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import logo from "../../Assets/logo_noBG.png";
 import { useAuth } from "../../Context/useAuth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -12,24 +12,18 @@ const Login = (props: Props) => {
 	const { loginUser } = useAuth();
 	const navigate = useNavigate();
 
-	const [token, setToken] = useState<string | null>(null);
-
 	const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const response = await loginUser(email, password);
+		await loginUser(email, password);
 
 		setEmail("");
 		setPassword("");
 
-		// await setTimeout(() => {
-		// 	navigate("/dashboard");
-		// }, 5000);
+		navigate("/dashboard");
 	};
 
-	return token ? (
-		<Navigate to="/dashboard" />
-	) : (
+	return (
 		<>
 			<div className="sign-in-container">
 				<img src={logo} alt="Company Logo" className="logo" />
